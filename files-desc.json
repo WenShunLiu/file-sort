@@ -1,0 +1,8 @@
+{
+  "src": "文件整理根路径",
+  "csstype": "css文件类型{auto: 根据style标签lang自动识别(默认), less/scss/sass/css}",
+  "directoryname": "true/false(文件夹名是否规范) ok",
+  "directorytype": "{normal: '小写下划线，下划线根据文件名的大写字母识别'(默认), aaBb: '驼峰式'}(有此项时directoryname自动为true)",
+  "filename": "{normal: '小写下划线，下划线根据文件名的大写字母识别'(默认), aaBb: '驼峰式'}",
+  "deletejson": "true/false是否删除json文件 ok"
+}

@@ -1,7 +1,9 @@
 const Path = require('path');
 const fs = require('fs')
 const $fs = require('./util/fs')
-const files = require('./files.json')
+const $directory = require('./util/directory')
+const $file = require('./util/file')
+const files = require('./files.json') //工程配置
 
 // 文件处理
 const fileOption = async (path) => {
@@ -42,7 +44,7 @@ const fileOption = async (path) => {
         } catch (error) {
           // newfolder = await $fs.fsmkdir(`${newpath}1`)
         }
-        $fs.vueOption(path, newfolder)
+        $file.vueOption(path, newfolder)
 
         // 中间可能还要解析import路径
 
@@ -59,6 +61,10 @@ const getFolder = async (path) => {
   const stat = await $fs.fsstat(path)
   // 是目录
   if (stat.isDirectory()) {
+    // 该文件夹的命名规范
+    if (files.directoryname) {
+      $directory.directoryRename(path, files.directorytype)
+    }
     // 该目录下的所有文件或者目录
     const directory = await $fs.fsreaddir(path)
     // 解析该文件夹下的所有文件
@@ -66,8 +72,10 @@ const getFolder = async (path) => {
       // 解析文件夹、vue文件、js文件
       if (/\.json$/.test(item)) {
         // 删除json文件
-        const jsonPath = Path.resolve(Path.join(path, item))
-        $fs.fsunlink(jsonPath)
+        if (files.deletejson) {
+          const jsonPath = Path.resolve(Path.join(path, item))
+          $fs.fsunlink(jsonPath)
+        }
       } else {
         const newpath = Path.resolve(Path.join(path, item))
         getFolder(newpath)
@@ -80,8 +88,9 @@ const getFolder = async (path) => {
 
 
 const rootPath = Path.resolve(files.src)
+
 getFolder(rootPath)
-console.log(files)
+
 // 判断是否大写字母
 function isUpperCase(tmp) {
   return /[A-Z]/.test(tmp)

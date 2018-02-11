@@ -1,3 +1,8 @@
 {
-  "src": "./components的副本"
+  "src": "./components的副本",
+  "csstype": "auto",
+  "directoryname": false,
+  "directorytype": "normal",
+  "filename": "normal",
+  "deletejson": true
 }
