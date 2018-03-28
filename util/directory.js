@@ -1,3 +1,6 @@
+/**
+ * 文件夹操作
+ */
 const $fs = require('./fs')
 const directoryRename = (path, directorytype) => {
   if(directorytype === 'normal') {
@@ -6,15 +9,14 @@ const directoryRename = (path, directorytype) => {
     aaBbRename(path)
   }
 }
-
+// 小写字母下划线式命名
 function normalRename(path) {
 
 }
 
-
+// 驼峰式命名
 function aaBbRename(path) {
 
-  
 }
 module.exports = {
   directoryRename

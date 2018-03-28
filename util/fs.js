@@ -1,3 +1,6 @@
+/**
+ * 对node原生文件操作的封装
+ */
 const fs = require('fs')
 
 // 获取文件信息
